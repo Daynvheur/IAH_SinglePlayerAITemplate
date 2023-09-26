@@ -2,7 +2,7 @@ using IAH_SinglePlayerAutomation.Class;
 using IAH_SinglePlayerAutomation.Class.Response;
 using System.Text;
 using System.Text.Json;
-using static IAH_SinglePlayerAutomation.Class.APIAnswer;
+using static IAH_SinglePlayerAutomation.Class.Response.APIAnswer;
 
 namespace IAH_SinglePlayerAutomation;
 
@@ -194,8 +194,11 @@ public abstract class Requests
 		}
 		catch (HttpRequestException ex)
 		{
-			if (ex.HResult == -2147467259)
-				return new AsyncResponse { IsSuccessStatusCode = true, ResponseString = JsonSerializer.Serialize(new TransitionResponse() { state = "STARTING" }) }; // Mock.
+#if DEBUG
+			Console.WriteLine(ex);
+#endif
+			//if (ex.HResult == -2147467259)
+			//	return new AsyncResponse { IsSuccessStatusCode = true, ResponseString = JsonSerializer.Serialize(new TransitionResponse() { state = "STARTING" }) }; // Mock.
 			return new AsyncResponse { IsSuccessStatusCode = false };
 		}
 

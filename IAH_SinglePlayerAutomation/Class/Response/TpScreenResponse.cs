@@ -1,12 +1,17 @@
-namespace IAH_SinglePlayerAutomation.Class.Response;
+using System.Text.Json.Serialization;
 
-public class TpCard
-{
-	public string? type;
-}
+namespace IAH_SinglePlayerAutomation.Class.Response;
 
 public class TpScreenResponse
 {
+	[JsonInclude]
 	public List<TpCard> chaosCards = new();
+	[JsonInclude]
 	public List<TpCard> tpCards = new();
+}
+
+public class TpCard
+{
+	[JsonInclude]
+	public string? type;
 }

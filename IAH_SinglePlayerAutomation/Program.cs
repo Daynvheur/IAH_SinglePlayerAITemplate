@@ -19,6 +19,7 @@ internal static class Program
 			await Task.Delay(1000); // run every 1 sec
 
 			TransitionResponse? requestResponse = await Requests.GetPlayerState();
+			Console.WriteLine($"PlayerState: {requestResponse?.state}");
 			if (requestResponse == null) continue;
 
 			/* STARTING

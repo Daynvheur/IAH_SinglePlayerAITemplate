@@ -1,5 +1,5 @@
 using IAH_SinglePlayerAutomation.Class.Response;
-using static IAH_SinglePlayerAutomation.Class.APIAnswer;
+using static IAH_SinglePlayerAutomation.Class.Response.APIAnswer;
 
 namespace IAH_SinglePlayerAutomation.Class;
 
@@ -58,9 +58,17 @@ public class GameState
 			+ " | Grid Nodes: " + _gridNodes.Count
 			+ " | Web Buffer Tiles: " + _webBufferTiles.Count
 		+ Environment.NewLine
-			+ "API Password: " + _apiPassword + " | RemoteBot IP: " + _remoteBotIp
+			+ "API Password: " + _apiPassword
+			+ " | RemoteBot IP: " + _remoteBotIp
 		+ Environment.NewLine
-			+ "System FPS: " + _fps + " | Version: " + _version + " | Uptime: " + _timeRunning;  // _timeRunning was missing previously
+			+ "System FPS: " + _fps
+			+ " | Version: " + _version
+			+ " | Uptime: " + _timeRunning // _timeRunning was missing previously
+		+ Environment.NewLine
+			+ "PC Started: " + _pcStarted // _pcStarted was missing previously
+			+ " | File System: " + _osSelected // _osSelected was missing previously
+			+ " | Modem Connected: " + _modemConnected // _modemConnected was missing previously
+		;
 
 	public async void RunAiLogic()
 	{
