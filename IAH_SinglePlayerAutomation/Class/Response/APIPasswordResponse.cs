@@ -1,8 +1,7 @@
-namespace IAH_SinglePlayerAutomation.Class.Response
+namespace IAH_SinglePlayerAutomation.Class.Response;
+
+public class APIPasswordResponse
 {
-    public class APIPasswordResponse
-    {
-        public required string apiPassword;
-        public required string ip;
-    }
+	public required string apiPassword;
+	public required string ip;
 }

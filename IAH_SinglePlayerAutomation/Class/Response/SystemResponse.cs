@@ -1,9 +1,8 @@
-namespace IAH_SinglePlayerAutomation.Class.Response
+namespace IAH_SinglePlayerAutomation.Class.Response;
+
+public class SystemResponse
 {
-    public class SystemResponse
-    {
-        public int fps;
-        public float timeRunning; // in seconds
-        public string? version;
-    }
+	public int fps;
+	public float timeRunning; // in seconds
+	public string? version;
 }

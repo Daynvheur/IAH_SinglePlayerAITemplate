@@ -1,16 +1,14 @@
-using System.Collections.Generic;
 using System.Numerics;
 
-namespace IAH_SinglePlayerAutomation.Class.Response
-{
-    public class BufferResponse
-    {
-        public List<WebBufferTile> tiles = new();
-    }
+namespace IAH_SinglePlayerAutomation.Class.Response;
 
-    public class WebBufferTile
-    {
-        public Vector3 position;
-        public required string uniqueID;
-    }
+public class BufferResponse
+{
+	public List<WebBufferTile> tiles = new();
+}
+
+public class WebBufferTile
+{
+	public Vector3 position;
+	public required string uniqueID;
 }

@@ -1,7 +1,6 @@
-namespace IAH_SinglePlayerAutomation
+namespace IAH_SinglePlayerAutomation;
+
+public class TransitionResponse
 {
-    public class TransitionResponse
-    {
-        public string? state;
-    }
+	public string? state;
 }

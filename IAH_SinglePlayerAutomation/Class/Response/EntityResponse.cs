@@ -1,9 +1,6 @@
-using System.Collections.Generic;
+namespace IAH_SinglePlayerAutomation.Class.Response;
 
-namespace IAH_SinglePlayerAutomation.Class.Response
+public class EntitiesResponse
 {
-    public class EntitiesResponse
-    {
-        public List<Entity> entities = new();
-    }
+	public List<Entity> entities = new();
 }

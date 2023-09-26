@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using IAH_SinglePlayerAutomation.Class;
 
-namespace IAH_SinglePlayerAutomation
+namespace IAH_SinglePlayerAutomation;
+
+public class TilesResponse
 {
-    public class TilesResponse
-    {
-        public List<Tile> tiles = new();
-    }
+	public List<Tile> tiles = new();
 }

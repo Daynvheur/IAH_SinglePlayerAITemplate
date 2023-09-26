@@ -1,9 +1,6 @@
-using System.Collections.Generic;
+namespace IAH_SinglePlayerAutomation.Class.Response;
 
-namespace IAH_SinglePlayerAutomation.Class.Response
+public class GridResponse
 {
-    public class GridResponse
-    {
-        public List<GridNode> gridNodes = new();
-    }
+	public List<GridNode> gridNodes = new();
 }
