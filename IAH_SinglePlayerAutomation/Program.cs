@@ -1,7 +1,10 @@
-﻿namespace IAH_SinglePlayerAutomation;
+﻿using IAH_SinglePlayerAutomation.Class.Response;
+
+namespace IAH_SinglePlayerAutomation;
 
 internal static class Program
 {
+	static APIAnswer answer;
 	/*
 	 * When our currentPlayerState is INGAME we create gameState class to hold tiles and entities.
 	 * This is rough example designed to be refactored or remade, you should create your own AI, you can do it in C#, JS,etc, use some DX or GDI Library to visualize output.
@@ -17,6 +20,8 @@ internal static class Program
 		while (true)
 		{
 			await Task.Delay(1000); // run every 1 sec
+
+			Console.Clear();
 
 			TransitionResponse? requestResponse = await Requests.GetPlayerState();
 			Console.WriteLine($"PlayerState: {requestResponse?.state}");
@@ -42,12 +47,17 @@ internal static class Program
 			await Requests.HackerSelectTransition(requestResponse);
 
 			// STEP2: These happen INGAME, we get some data.
-			await Requests.GetTiles(requestResponse);
-			await Requests.GetGrid(requestResponse);
-			await Requests.GetEntities(requestResponse);
-			await Requests.GetGameState(requestResponse);
+			answer = await Requests.GetTiles(requestResponse);
+			if (answer == APIAnswer.RequestSuccess) Console.WriteLine(Requests.GameState.Tiles);
+			answer = await Requests.GetGrid(requestResponse);
+			if (answer == APIAnswer.RequestSuccess) Console.WriteLine(Requests.GameState.GridNodes);
+			answer = await Requests.GetEntities(requestResponse);
+			if (answer == APIAnswer.RequestSuccess) Console.WriteLine(Requests.GameState.Entities);
 			await Requests.GetSystemState(requestResponse);
-			await Requests.GetBufferTiles(requestResponse);
+			answer = await Requests.GetBufferTiles(requestResponse);
+			if (answer == APIAnswer.RequestSuccess) Console.WriteLine(Requests.GameState.WebBufferTiles);
+			answer = await Requests.GetGameState(requestResponse);
+			if (answer == APIAnswer.RequestSuccess) Console.WriteLine(Requests.GameState);
 
 			// STEP3: Get API Password that we need in order to perform bot AI actions.
 			await Requests.GetApiPassword(requestResponse);
@@ -55,14 +65,11 @@ internal static class Program
 			// STEP4: When we Get Level Ups, select TP Perks or Chaos Cards.
 			await Requests.TpScreen(requestResponse);
 
-			// Lets Render Console for the time being....
-			RenderConsole(requestResponse);
-
 			// STEP5: Now when we are in the game we need to click game menus, like starting PC, selecting OS and connecting to the Internet.
 			await Requests.InitialMenuSequence();
 
 			// STEP6: Browse Internet, Create your Bots, and trigger Level Up Screen (TpScreen).
-			if (Requests.CanPerformAction())
+			if (Requests.GameState.CanPerformAction())
 			{
 				await Requests.BrowseInternet();
 				await Requests.UseWWWBlock();
@@ -83,13 +90,5 @@ internal static class Program
 				* /v1/time -> returns unity Time.time -> you can use this Entity-attackdelay to check when shoot delay is over, also do note, in competitive Time.time speed will change depending on tactical mode speed.
 				*/
 		}
-	}
-
-	private static void RenderConsole(TransitionResponse currentPlayerState)
-	{
-		Console.Clear();
-		Console.WriteLine("Player State:" + currentPlayerState.state);
-
-		Console.WriteLine(Requests.GameState);
 	}
 }

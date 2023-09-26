@@ -1,4 +1,6 @@
 using IAH_SinglePlayerAutomation.Class.Response;
+using System.Text;
+using System.Text.Json;
 using static IAH_SinglePlayerAutomation.Class.Response.APIAnswer;
 
 namespace IAH_SinglePlayerAutomation.Class;
@@ -30,18 +32,22 @@ public class GameState
 
 	private long _lastPerformedActionTick;
 
-	//private Tile? GetTileByType(string mainType, string type) => _tiles.FirstOrDefault(t => t.type == type && t.mainType == mainType);
-
-	//private List<Tile> GetTilesByType(string mainType, string type) => _tiles.Where(e => e.type == type && e.mainType == mainType).ToList();
+	public string Entities => ToString(nameof(Entities), _entities);
+	public string Tiles => ToString(nameof(Tiles), _tiles);
+	public string GridNodes => ToString(nameof(GridNodes), _gridNodes);
+	public string WebBufferTiles => ToString(nameof(WebBufferTiles), _webBufferTiles);
 
 	private void PerformedAction() => _lastPerformedActionTick = DateTime.Now.Ticks;
 
-	//public List<Entity> GetEntitiesByFlag(string team) => _entities.Where(e => e.team == team).ToList();
-
-	//public List<Entity> GetEntitiesByType(string type) => _entities.Where(e => e.type == type).ToList();
-
 	/// <summary>actions trigger hostile response, we need to be careful when we perform actions otherwise many enemies will spawn.</summary>
 	public bool CanPerformAction() => _lastPerformedActionTick + (TimeSpan.TicksPerSecond * 5) <= DateTime.Now.Ticks;
+
+	private static string ToString<T>(string listName, List<T> list) where T : class
+	{
+		StringBuilder sb = new($"{listName}: ");
+		foreach (T item in list) sb.Append(JsonSerializer.Serialize(item));
+		return sb.AppendLine().ToString();
+	}
 
 	public override string ToString()
 		=> "Money: " + _money

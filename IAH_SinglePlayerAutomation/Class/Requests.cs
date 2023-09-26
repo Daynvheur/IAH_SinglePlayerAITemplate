@@ -13,9 +13,7 @@ public abstract class Requests
 	private static HttpClient _httpClient = new() { BaseAddress = new($"http://{remoteip}:6800") }; // you can specify different port in the game launch parameters (default is 6800) -> for example: -apiPort 6900
 	private static GameState gameState = new();
 
-	public static string GameState { get => gameState.ToString(); }
-
-	public static bool CanPerformAction() => gameState.CanPerformAction();
+	public static GameState GameState => gameState;
 
 	public static async Task<TransitionResponse?> GetPlayerState()
 	{
@@ -160,10 +158,8 @@ public abstract class Requests
 	{
 		if (transition.state == null) return StateIsNull;
 		if (transition.state is not "INGAME") return StateNotInGame;
-		var response = await GetApply<BufferResponse>("/v1/buffer", gameState.Apply);
-		if (response != RequestSuccess) return response;
 
-		return await gameState.BufferItem();
+		return await GetApply<BufferResponse>("/v1/buffer", gameState.Apply);
 	}
 
 	public static async Task<bool?> RayCast(string uniqueID, string targetUniqueID)
