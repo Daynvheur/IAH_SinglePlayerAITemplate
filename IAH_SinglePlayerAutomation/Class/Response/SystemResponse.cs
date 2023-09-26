@@ -4,6 +4,6 @@ namespace IAH_SinglePlayerAutomation.Class.Response
     {
         public int fps;
         public float timeRunning; // in seconds
-        public string version;
+        public string? version;
     }
 }

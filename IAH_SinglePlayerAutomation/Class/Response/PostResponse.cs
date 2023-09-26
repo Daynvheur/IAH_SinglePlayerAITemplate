@@ -1,8 +1,8 @@
 namespace IAH_SinglePlayerAutomation.Class
 {
-    public class PostResponse
+    public class AsyncResponse
     {
-        public string responseString { get; set; }
-        public bool isSuccessStatusCode { get; set; }
+        public string? ResponseString { get; set; }
+        public bool IsSuccessStatusCode { get; set; }
     }
 }

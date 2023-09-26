@@ -5,12 +5,12 @@ namespace IAH_SinglePlayerAutomation.Class.Response
 {
     public class BufferResponse
     {
-        public List<WebBufferTile> tiles = new List<WebBufferTile>();
+        public List<WebBufferTile> tiles = new();
     }
 
     public class WebBufferTile
     {
         public Vector3 position;
-        public string uniqueID;
+        public required string uniqueID;
     }
 }
