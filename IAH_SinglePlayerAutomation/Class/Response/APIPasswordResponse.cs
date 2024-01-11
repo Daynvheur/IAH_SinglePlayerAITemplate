@@ -1,8 +1,12 @@
-namespace IAH_SinglePlayerAutomation.Class.Response
+using System.Text.Json.Serialization;
+
+namespace IAH_SinglePlayerAutomation.Class.Response;
+
+public class APIPasswordResponse
 {
-    public class APIPasswordResponse
-    {
-        public string apiPassword;
-        public string ip;
-    }
+	[JsonInclude]
+	public required string apiPassword;
+
+	[JsonInclude]
+	public required string ip;
 }

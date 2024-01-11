@@ -1,10 +1,30 @@
-using System.Collections.Generic;
-using IAH_SinglePlayerAutomation.Class;
+using System.Numerics;
+using System.Text.Json.Serialization;
 
-namespace IAH_SinglePlayerAutomation
+namespace IAH_SinglePlayerAutomation;
+
+public class TilesResponse
 {
-    public class TilesResponse
-    {
-        public List<Tile> tiles = new List<Tile>();
-    }
+	[JsonInclude]
+	public List<Tile> tiles = new();
+}
+
+public class Tile
+{
+	[JsonInclude]
+	public string? equipType;
+	[JsonInclude]
+	public string? frameworkType;
+	[JsonInclude]
+	public bool isBusy;
+	[JsonInclude]
+	public bool isOpen;
+	[JsonInclude]
+	public string? mainType;
+	[JsonInclude]
+	public Vector3 position;
+	[JsonInclude]
+	public string? type;
+	[JsonInclude]
+	public required string uniqueID;
 }

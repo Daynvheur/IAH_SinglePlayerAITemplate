@@ -1,9 +1,13 @@
-namespace IAH_SinglePlayerAutomation.Class.Response
+using System.Text.Json.Serialization;
+
+namespace IAH_SinglePlayerAutomation.Class.Response;
+
+public class SystemResponse
 {
-    public class SystemResponse
-    {
-        public int fps;
-        public float timeRunning; // in seconds
-        public string version;
-    }
+	[JsonInclude]
+	public int fps;
+	[JsonInclude]
+	public float timeRunning; // in seconds
+	[JsonInclude]
+	public string? version;
 }

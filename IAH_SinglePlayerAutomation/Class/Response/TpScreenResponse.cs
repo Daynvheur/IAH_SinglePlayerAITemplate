@@ -1,15 +1,17 @@
-using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
-namespace IAH_SinglePlayerAutomation.Class.Response
+namespace IAH_SinglePlayerAutomation.Class.Response;
+
+public class TpScreenResponse
 {
-    public class TpCard
-    {
-        public string type;
-    }
+	[JsonInclude]
+	public List<TpCard> chaosCards = new();
+	[JsonInclude]
+	public List<TpCard> tpCards = new();
+}
 
-    public class TpScreenResponse
-    {
-        public List<TpCard> chaosCards = new List<TpCard>();
-        public List<TpCard> tpCards = new List<TpCard>();
-    }
+public class TpCard
+{
+	[JsonInclude]
+	public string? type;
 }

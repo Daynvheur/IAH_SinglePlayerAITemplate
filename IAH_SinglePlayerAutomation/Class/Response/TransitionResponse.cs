@@ -1,7 +1,9 @@
-namespace IAH_SinglePlayerAutomation
+using System.Text.Json.Serialization;
+
+namespace IAH_SinglePlayerAutomation;
+
+public class TransitionResponse
 {
-    public class TransitionResponse
-    {
-        public string state;
-    }
+	[JsonInclude]
+	public required string state;
 }

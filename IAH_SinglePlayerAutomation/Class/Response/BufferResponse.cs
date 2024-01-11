@@ -1,16 +1,18 @@
-using System.Collections.Generic;
 using System.Numerics;
+using System.Text.Json.Serialization;
 
-namespace IAH_SinglePlayerAutomation.Class.Response
+namespace IAH_SinglePlayerAutomation.Class.Response;
+
+public class BufferResponse
 {
-    public class BufferResponse
-    {
-        public List<WebBufferTile> tiles = new List<WebBufferTile>();
-    }
+	[JsonInclude]
+	public List<WebBufferTile> tiles = new();
+}
 
-    public class WebBufferTile
-    {
-        public Vector3 position;
-        public string uniqueID;
-    }
+public class WebBufferTile
+{
+	[JsonInclude]
+	public Vector3 position;
+	[JsonInclude]
+	public required string uniqueID;
 }
